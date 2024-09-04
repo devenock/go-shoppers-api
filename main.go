@@ -2,25 +2,26 @@ package main
 
 import (
 	"github.com/Trend20/go-shopper-api/config"
+	"github.com/Trend20/go-shopper-api/controllers"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 
-	//	initialize a gin router instance
+	//initialize a gin router instance
 	router := gin.Default()
-
-	//	sample test route
-	//router.GET("/", func(c *gin.Context) {
-	//	c.JSON(http.StatusOK, gin.H{
-	//		"message": "Hello World",
-	//	})
-	//})
 
 	//connect to the database
 	config.InitDB()
 
-	// APPLICATION ROUTES HERE
+	//APPLICATION ROUTES HERE
+
+	//user routes
+	router.GET("/users", controllers.GetAllUsers)
+	router.POST("/users", controllers.CreateUser)
+	router.GET("/users/:id", controllers.GetUser)
+	router.PATCH("/users/:id", controllers.UpdateUser)
+	router.DELETE("/users/:id", controllers.DeleteUser)
 
 	//listen to the port
 	router.Run(":5000")
