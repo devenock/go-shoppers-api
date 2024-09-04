@@ -1,4 +1,4 @@
-module github.com/Trend20/go-shopper-api
+module github.com/Trend20/go-shoppers-api
 
 go 1.22.6
 
