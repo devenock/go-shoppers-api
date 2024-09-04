@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/Trend20/go-shopper-api/config"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 func main() {
@@ -11,11 +11,14 @@ func main() {
 	router := gin.Default()
 
 	//	sample test route
-	router.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "Hello World",
-		})
-	})
+	//router.GET("/", func(c *gin.Context) {
+	//	c.JSON(http.StatusOK, gin.H{
+	//		"message": "Hello World",
+	//	})
+	//})
+
+	//connect to the database
+	config.InitDB()
 
 	// APPLICATION ROUTES HERE
 
