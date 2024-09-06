@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/Trend20/go-shopper-api/models"
+	"github.com/Trend20/go-shoppers-api/models"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )

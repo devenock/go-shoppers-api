@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/Trend20/go-shopper-api/config"
-	"github.com/Trend20/go-shopper-api/controllers"
+	"github.com/Trend20/go-shoppers-api/config"
+	"github.com/Trend20/go-shoppers-api/controllers"
 	"github.com/gin-gonic/gin"
 )
 

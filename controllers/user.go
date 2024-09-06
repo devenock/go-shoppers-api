@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/Trend20/go-shopper-api/config"
-	"github.com/Trend20/go-shopper-api/models"
+	"github.com/Trend20/go-shoppers-api/config"
+	"github.com/Trend20/go-shoppers-api/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
