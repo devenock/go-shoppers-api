@@ -23,6 +23,9 @@ func main() {
 	router.PATCH("/users/:id", controllers.UpdateUser)
 	router.DELETE("/users/:id", controllers.DeleteUser)
 
+	//product routes
+	router.GET("/products", controllers.GetAllProducts)
+
 	//listen to the port
 	router.Run(":5000")
 }

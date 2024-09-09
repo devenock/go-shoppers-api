@@ -7,7 +7,6 @@ import (
 	"net/http"
 )
 
-// creating a user
 func CreateUser(c *gin.Context) {
 	var userInput models.CreateUserInput
 	if err := c.ShouldBindJSON(&userInput); err != nil {
@@ -19,14 +18,12 @@ func CreateUser(c *gin.Context) {
 	c.JSON(http.StatusCreated, gin.H{"user": user})
 }
 
-// getting all users
 func GetAllUsers(c *gin.Context) {
 	var users []models.User
 	config.DB.Find(&users)
 	c.JSON(http.StatusOK, gin.H{"data": users})
 }
 
-// getting a single user by ID
 func GetUser(c *gin.Context) {
 	var user models.User
 	err := config.DB.Where("id = ?", c.Param("id")).First(&user).Error
@@ -36,7 +33,6 @@ func GetUser(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": user})
 }
 
-// updating user details
 func UpdateUser(c *gin.Context) {
 	//get the model if it exists
 	var user models.User
@@ -54,7 +50,6 @@ func UpdateUser(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": user})
 }
 
-// deleting a user
 func DeleteUser(c *gin.Context) {
 	var user models.User
 	if err := config.DB.Where("id = ?", c.Param("id")).First(&user).Error; err != nil {
