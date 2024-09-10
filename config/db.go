@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"github.com/Trend20/go-shoppers-api/models"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -14,10 +15,11 @@ func InitDB() {
 		panic("failed to connect database")
 	}
 	//	migrate the schema
-	err = db.AutoMigrate(&models.User{})
+	err = db.AutoMigrate(&models.User{}, &models.Product{})
 	if err != nil {
 		return
 	}
-
+	fmt.Println("Database connected successfully!")
 	DB = db
+
 }

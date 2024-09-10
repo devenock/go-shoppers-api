@@ -8,14 +8,13 @@ import (
 )
 
 func CreateUser(c *gin.Context) {
-	var userInput models.CreateUserInput
-	if err := c.ShouldBindJSON(&userInput); err != nil {
+	var createUserInput models.CreateUserInput
+	if err := c.ShouldBindJSON(&createUserInput); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
 	}
-	user := models.User{Name: userInput.Name, Email: userInput.Email, Pass: userInput.Pass, Role: userInput.Role}
+	user := models.User{Name: createUserInput.Name, Email: createUserInput.Email, Pass: createUserInput.Pass, Role: createUserInput.Role}
 	config.DB.Create(&user)
-	c.JSON(http.StatusCreated, gin.H{"user": user})
+	c.JSON(http.StatusOK, gin.H{"data": user})
 }
 
 func GetAllUsers(c *gin.Context) {

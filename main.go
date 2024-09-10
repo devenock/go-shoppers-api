@@ -27,5 +27,5 @@ func main() {
 	router.GET("/products", controllers.GetAllProducts)
 
 	//listen to the port
-	router.Run(":5000")
+	router.Run(":3000")
 }

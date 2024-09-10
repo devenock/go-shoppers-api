@@ -11,7 +11,7 @@ import (
 func GetAllProducts(c *gin.Context) {
 	var products []models.Product
 	config.DB.Find(&products)
-	c.JSON(http.StatusOK, products)
+	c.JSON(http.StatusOK, gin.H{"data": products})
 }
 
 //create a product
