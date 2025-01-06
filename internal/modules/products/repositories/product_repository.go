@@ -18,7 +18,7 @@ func (r *ProductRepository) GetAll() ([]models.Product, error) {
 }
 
 // GetByID
-func (r *ProductRepository) GetByID(id int) (*models.Product, error) {
+func (r *ProductRepository) GetByID(id uint) (*models.Product, error) {
 	var product models.Product
 	if err := db.DB.First(&product, id).Error; err != nil {
 		return nil, err
@@ -35,15 +35,15 @@ func (r *ProductRepository) Create(product *models.Product) error {
 }
 
 // Update Product
-func (r *ProductRepository) Update(product *models.Product) (*models.Product, error) {
+func (r *ProductRepository) Update(product *models.Product) error {
 	if err := db.DB.Save(product).Error; err != nil {
-		return nil, err
+		return err
 	}
-	return product, nil
+	return nil
 }
 
 // Delete Product
-func (r *ProductRepository) Delete(id int) error {
+func (r *ProductRepository) Delete(id uint) error {
 	if err := db.DB.Delete(&models.Product{}, id).Error; err != nil {
 		return err
 	}
