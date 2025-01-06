@@ -1,15 +1,17 @@
 package main
 
 import (
+	"github.com/Trend20/go-shoppers-api/pkg/db"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 
+	//initialize the database connection
+	db.InitBD()
+
 	//initialize a gin router instance
 	router := gin.Default()
-
-	//connect to the database
 
 	//APPLICATION ROUTES HERE
 
