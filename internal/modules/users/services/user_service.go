@@ -12,6 +12,10 @@ type UserService struct {
 	UserRepo *repositories.UserRepository
 }
 
+func NewUserService(UserRepo *repositories.UserRepository) *UserService {
+	return &UserService{UserRepo: UserRepo}
+}
+
 // Register creates a new user with a hashed password
 func (s *UserService) Register(user *models.User) error {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
