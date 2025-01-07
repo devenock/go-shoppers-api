@@ -7,6 +7,8 @@ import (
 	"github.com/Trend20/go-shoppers-api/internal/modules/products/services"
 	"github.com/Trend20/go-shoppers-api/migrations"
 	"github.com/Trend20/go-shoppers-api/pkg/db"
+	"github.com/Trend20/go-shoppers-api/pkg/routes"
+	"github.com/Trend20/go-shoppers-api/scripts"
 	"github.com/gin-gonic/gin"
 	"os"
 )
@@ -17,20 +19,13 @@ func main() {
 	db.InitBD()
 
 	//run migrations
-	migrations.Migrate()
+	scripts.Migrate()
 
-	//initialize a gin router instance
+	//initialize a gin routes instance
 	router := gin.Default()
 
-	//APPLICATION ROUTES HERE
-	// Initialize product dependencies
-	productRepo := &repositories.ProductRepository{}
-	productService := services.NewProductService(productRepo)
-	productController := controllers.NewProductController(productService)
-
-	// Register routes
-	api := router.Group("/api/v1")
-	routes.RegisterProductRoutes(api, productController)
+	// Register all module routes
+	routes.RegisterAllRoutes(router)
 
 	//listen to the port
 	port := os.Getenv("PORT")
