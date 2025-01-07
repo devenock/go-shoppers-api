@@ -2,10 +2,11 @@ package utils
 
 import (
 	"github.com/golang-jwt/jwt/v4"
+	"os"
 	"time"
 )
 
-var jwtKey = []byte("your_secret_key")
+var jwtKey = []byte(os.Getenv("JWT_SECRETE_KEY"))
 
 // Claims defines the structure of JWT claims
 type Claims struct {

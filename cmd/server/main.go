@@ -1,11 +1,6 @@
 package main
 
 import (
-	"github.com/Trend20/go-shoppers-api/internal/modules/products/controllers"
-	"github.com/Trend20/go-shoppers-api/internal/modules/products/repositories"
-	"github.com/Trend20/go-shoppers-api/internal/modules/products/routes"
-	"github.com/Trend20/go-shoppers-api/internal/modules/products/services"
-	"github.com/Trend20/go-shoppers-api/migrations"
 	"github.com/Trend20/go-shoppers-api/pkg/db"
 	"github.com/Trend20/go-shoppers-api/pkg/routes"
 	"github.com/Trend20/go-shoppers-api/scripts"
