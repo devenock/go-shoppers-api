@@ -54,3 +54,13 @@ func (s *UserService) GetAllUsers() ([]models.User, error) {
 func (s *UserService) GetUserByID(id uint) (*models.User, error) {
 	return s.UserRepo.GetByID(id)
 }
+
+// update user
+func (s *UserService) UpdateUser(id uint, updatedUser *models.User) error {
+	return s.UserRepo.Update(id, updatedUser)
+}
+
+// delete user
+func (s *UserService) DeleteUser(id uint) error {
+	return s.UserRepo.Delete(id)
+}
