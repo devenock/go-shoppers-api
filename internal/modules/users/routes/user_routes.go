@@ -11,6 +11,9 @@ func RegisterUserRoutes(router *gin.RouterGroup, controller *controllers.UserCon
 	{
 		users.POST("/register", controller.Register)
 		users.POST("/login", controller.Login)
+		users.GET("/", middlewares.AuthMiddleware(), controller.GetAllUsers)
 		users.GET("/:id", middlewares.AuthMiddleware(), controller.GetUser)
+		users.PUT("/:id", middlewares.AuthMiddleware(), controller.UpdateUser)
+		users.DELETE("/:id", middlewares.AuthMiddleware(), controller.DeleteUser)
 	}
 }

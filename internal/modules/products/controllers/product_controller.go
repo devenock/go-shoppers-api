@@ -49,23 +49,35 @@ func (c *ProductController) Create(ctx *gin.Context) {
 }
 
 func (c *ProductController) Update(ctx *gin.Context) {
-	var product models.Product
-	if err := ctx.ShouldBindJSON(&product); err != nil {
+	id, err := strconv.Atoi(ctx.Param("id"))
+	if err != nil || id <= 0 {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "invalid ID"})
+		return
+	}
+
+	var updatedProduct models.Product
+	if err := ctx.ShouldBindJSON(&updatedProduct); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	if err := c.service.UpdateProduct(&product); err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+
+	if err := c.service.UpdateProduct(uint(id), &updatedProduct); err != nil {
+		ctx.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
 	}
-	ctx.JSON(http.StatusOK, product)
+	ctx.JSON(http.StatusOK, gin.H{"message": "product updated successfully"})
 }
 
 func (c *ProductController) Delete(ctx *gin.Context) {
-	id, _ := strconv.Atoi(ctx.Param("id"))
-	if err := c.service.DeleteProduct(uint(id)); err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+	id, err := strconv.Atoi(ctx.Param("id"))
+	if err != nil || id <= 0 {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "invalid ID"})
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{"message": "Product deleted successfully"})
+
+	if err := c.service.DeleteProduct(uint(id)); err != nil {
+		ctx.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{"message": "product deleted successfully"})
 }

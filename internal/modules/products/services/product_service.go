@@ -25,8 +25,8 @@ func (s *ProductService) CreateProduct(product *models.Product) error {
 	return s.repo.Create(product)
 }
 
-func (s *ProductService) UpdateProduct(product *models.Product) error {
-	return s.repo.Update(product)
+func (s *ProductService) UpdateProduct(id uint, updatedProduct *models.Product) error {
+	return s.repo.Update(id, updatedProduct)
 }
 
 func (s *ProductService) DeleteProduct(id uint) error {
