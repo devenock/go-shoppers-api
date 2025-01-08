@@ -53,6 +53,16 @@ func (c *UserController) Login(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"message": "Login successful", "token": token})
 }
 
+// get all users
+func (c *UserController) GetAllUsers(ctx *gin.Context) {
+	users, err := c.UserService.GetAllUsers()
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{"data": users})
+}
+
 // GetUser retrieves a user by ID
 func (c *UserController) GetUser(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Param("id"))
